@@ -8,13 +8,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './login/registration/registration.component';
+import { MemberComponent } from './member/member.component';
+import { AddMemberComponent } from './member/add-member/add-member.component';
+import { EditMemberComponent } from './member/edit-member/edit-member.component';
+import { RemoveMemberComponent } from './member/remove-member/remove-member.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    MemberComponent,
+    AddMemberComponent,
+    EditMemberComponent,
+    RemoveMemberComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,94 @@
 <div class="container">
     <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <form (ngSubmit)=onSubmit() #f="ngForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input class="form-control" id="firstName" name="firstName"
+                    type="text"
+                    required ngModel
+                    pattern="[A-Za-z ]+"
+                    #firstNameField ="ngModel">
+                    <span class="help-block" *ngIf="!firstNameField.valid && firstNameField.touched
+                     &&  !firstNameField.dirty">
+                        Field cannot be empty
+                    </span>
+                    <span class="help-block" *ngIf="!firstNameField.valid && firstNameField.dirty">
+                        Field should contain only alphabets
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input class="form-control" id="lastName" name="lastName"
+                    type="text"
+                    required ngModel
+                    pattern="[A-Za-z ]+"
+                    #lastNameField ="ngModel">
+                    <span class="help-block" *ngIf="!lastNameField.valid && lastNameField.touched
+                     &&  !lastNameField.dirty">
+                        Field cannot be empty
+                    </span>
+                    <span class="help-block" *ngIf="!lastNameField.valid && lastNameField.dirty">
+                        Field should contain only alphabets
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="userName">Member User Name</label>
+                    <input class="form-control" id="userName" name="userName"
+                    type="text"
+                    required ngModel
+                    (input) = checkUsernameAvailability($event)
+                    #userNameField ="ngModel">
+                    <span class="help-block" *ngIf="!userNameField.valid && userNameField.touched">
+                        Field cannot be empty
+                    </span>
+                    <span class="help-block" *ngIf="!userNameAvailability">
+                        User Name already taken
+                    </span>
+                    <span class="help-block" style="color:#a7a3a3 !important">
+                        This will be used as login User Name
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" id="password" name="password"
+                    type="password"
+                    required ngModel
+                    minlength="8"
+                    #passwordField ="ngModel">
+                    <span class="help-block" *ngIf="!passwordField.valid && passwordField.touched
+                    && !passwordField.dirty">
+                        Field cannot be empty
+                    </span>
+                    <span class="help-block" *ngIf="!passwordField.valid && passwordField.dirty">
+                        Password length should be atleast 8 characters
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="emailAddress">Email</label>
+                    <input class="form-control" id="emailAddress" name="emailAddress"
+                    required email ngModel           
+                    #emailField ="ngModel">
+                    <span class="help-block" *ngIf="!emailField.valid && emailField.touched
+                    && !emailField.dirty">
+                        Field cannot be empty
+                    </span>
+                    <span class="help-block" *ngIf="!emailField.valid && emailField.dirty">
+                       Not an valid Email Format 
+                    </span>
+                </div>
 
+                <div class="form-group">
+                    <label for="registrationDate">Registration Date</label>
+                    <input class="form-control" id="registrationDate" name="registrationDate"
+                    type="text"
+                    ngModel
+                    #registrationDateField ="ngModel" readonly>
+                </div>
+                <div>
+                    <button class="btn btn-success" type="submit" [disabled]= "!f.valid ">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
