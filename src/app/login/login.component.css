@@ -1,0 +1,17 @@
+.{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container {
+    margin-top: 50px; 
+    background-color: #dbe0dd;
+    padding:2%;
+    border-radius: 25px;
+}
+
+.help-block {
+    color: red;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
