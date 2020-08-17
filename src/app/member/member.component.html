@@ -1,2 +1,23 @@
 <app-header></app-header>
-
+<div clas="row">
+    <div class="col-xs-5">
+    <div>
+        <button class="btn btn-success">Add Member</button>
+    </div>
+    <hr>
+        <ul class="list-group">
+            <div class="list-group-item" 
+            *ngFor="let member of members">
+            
+                <b>{{member.firstName}} 
+                {{member.lastName}} </b>
+                {{member.emailId}}
+             
+            <div class="pull-right">
+                <button class="btn btn-danger" type="button">Delete </button> &nbsp;
+                <button class="btn btn-primary" type="button">Edit</button> &nbsp;
+            </div>
+        </div>
+        </ul>
+    </div>
+  </div>

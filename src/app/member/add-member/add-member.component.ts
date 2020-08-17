@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-add-member',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddMemberComponent implements OnInit {
 
+  @ViewChild('f') addMemberForm : NgForm;
+
+  genders : string[] = [
+    'Male', 'Female', 'Other'
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    console.log("submitted");
+  }
 }
