@@ -3,7 +3,7 @@
 }
 .container {
     margin-top: 50px; 
-    background-color: #dbe0dd;
+    background-color: #c3dee7;
     padding:2%;
     border-radius: 25px;
     width: 60%;
@@ -11,6 +11,12 @@
 
 .help-block {
     color: red;
+}
+
+.text-dark {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 input.ng-invalid.ng-touched{

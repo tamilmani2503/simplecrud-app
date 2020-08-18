@@ -13,6 +13,8 @@ import { AddMemberComponent } from './member/add-member/add-member.component';
 import { EditMemberComponent } from './member/edit-member/edit-member.component';
 import { RemoveMemberComponent } from './member/remove-member/remove-member.component';
 import { HeaderComponent } from './header/header.component';
+import { LoginregService } from './service/loginreg.service';
+
 
 
 @NgModule({
@@ -32,7 +34,7 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [LoginregService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
