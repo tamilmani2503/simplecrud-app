@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from './member.model';
+import { ActivatedRoute, Params } from '@angular/router';
+import { MemberService } from '../service/member.service';
 
 @Component({
   selector: 'app-member',
@@ -8,14 +10,23 @@ import { Member } from './member.model';
 })
 export class MemberComponent implements OnInit {
 
-  members : Member[] = [
-    new Member('Tamilmani','Narayanan','tamilmani.31@gmail.com','123'),
-    new Member('Anuratha','Tamilmani','anu.sakthivel45@gmail.com','345'),
-  ];
+  members : Member[];
+  userId:string;
 
-  constructor() { }
+  constructor(private route:ActivatedRoute, private memberService: MemberService) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe (
+      (params:Params) => {
+        
+        this.memberService.fetchByUserId(params['id']).subscribe(
+            data => {
+              this.userId =params['id'];
+              this.members=data;
+            }
+        );
+      }
+    );
   }
 
 }

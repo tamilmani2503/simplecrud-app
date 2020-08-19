@@ -14,6 +14,8 @@ import { EditMemberComponent } from './member/edit-member/edit-member.component'
 import { RemoveMemberComponent } from './member/remove-member/remove-member.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginregService } from './service/loginreg.service';
+import { MemberService } from './service/member.service';
+import { LookupService } from './service/lookup.service';
 
 
 
@@ -34,7 +36,7 @@ import { LoginregService } from './service/loginreg.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoginregService],
+  providers: [LoginregService, MemberService,LookupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

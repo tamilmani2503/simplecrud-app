@@ -10,10 +10,12 @@ import { EditMemberComponent} from './member/edit-member/edit-member.component';
 const routes: Routes = [
     {path:'', component: LoginComponent},
     {path:'register', component: RegistrationComponent},
-    {path:'dashboard', component: MemberComponent},
+    {path:'dashboard/:id', component: MemberComponent},
     {path:'member', component: AddMemberComponent},
     {path:'member/delete', component: RemoveMemberComponent},
-    {path:'member/:id', component: AddMemberComponent}
+    {path:'member/:id', component: AddMemberComponent},
+    {path:'member/:id/edit', component: EditMemberComponent},
+    {path:'member/:id/delete', component: RemoveMemberComponent}
 ];
 
 @NgModule({

@@ -2,21 +2,21 @@
 <div clas="row">
     <div class="col-xs-5">
     <div>
-        <button class="btn btn-success" routerLink="/member">Add Member</button>
+        <button class="btn btn-success" [routerLink]="['/member',userId]">Add Member</button>
     </div>
     <hr>
         <ul class="list-group">
             <div class="list-group-item" 
             *ngFor="let member of members">
-                <!-- <a [routerLink]="['/member']" [queryParams]="{id=123}">{{member.memberId}}</a> -->
-                <a [routerLink]="['/member',member.memberId]">{{member.memberId}}</a>
-                <b>
+              
+                <a  class="text-info" [routerLink]="['/member',member.memberId,'edit']">{{member.memberId}}</a>
+        
                 {{member.firstName}} 
-                {{member.lastName}} </b>
-                {{member.emailId}}
+                {{member.lastName}} 
+                
              
             <div class="pull-right">
-                <button class="btn btn-danger" type="button">Delete </button> &nbsp;
+                <button class="btn btn-danger" type="button" [routerLink]="['/member',member.memberId,'delete']">Delete </button> &nbsp;
             </div>
         </div>
         </ul>

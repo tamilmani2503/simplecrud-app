@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   @ViewChild ('f') loginForm : NgForm;
   badCredentials : string ="";
+  userId:string="";
+  successUrl:string="dashboard/";
   
   constructor(private loginRegService:LoginregService, private _router:Router) { }
 
@@ -22,21 +24,22 @@ export class LoginComponent implements OnInit {
   // }
 
   onSubmit() {
-    this.loginRegService.doLogin(this.loginForm.value['userName'], this.loginForm.value['password'])
+    this.loginRegService.doLogin(this.loginForm.value['userName'])
       .subscribe( 
             data => {
                 for (let key of data) {
-                  if (data.hasOwnProperty(key))   
-                    console.log(key['username']);     
-                    if (this.loginForm.value['userName'].toUpperCase() === key['username'].toUpperCase()
-                    && this.loginForm.value['password'] === key['password']) {
-                      this._router.navigate(['dashboard']);
-                    } else {
-                      console.log("exception occurred");
-                      this.badCredentials="Either UserName/Password is incorrect";
-                    }
+                 if (data.hasOwnProperty(key))   
+                    console.log(data);     
+                   if (this.loginForm.value['password'] === key['password']) {
+                           this.userId= key['userId'];
+                            this.successUrl=this.successUrl+this.userId;
+                          this._router.navigate([this.successUrl]);
+                       } else {
+                          console.log("exception occurred");
+                         this.badCredentials="Either UserName/Password is incorrect";
                   }
                 }
+              }
         );
      
   }
