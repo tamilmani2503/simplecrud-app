@@ -2,11 +2,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <div class="alert alert-success" *ngIf="registrationSuccess">
+                Registered Successfully!! <a routerLink='' style="text-decoration: none;">click here</a> to Login.
+            </div>
             <form (ngSubmit)=onSubmit() #f="ngForm">
-                <span class="help-success">
-                    {{registrationSuccess}}
-                </span>
-                <button class="btn btn-success" routerLink='' *ngIf="registrationSuccess">Login</button>
+                
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input class="form-control" id="firstName" name="firstName"
@@ -76,7 +76,7 @@
                 <div class="form-group">
                     <label for="emailAddress">Email</label>
                     <input class="form-control" id="emailAddress" name="emailAddress"
-                    required email ngModel           
+                    required email ngModel 
                     [(ngModel)] ="user.emailAddress"          
                     #emailField ="ngModel">
                     <span class="help-block" *ngIf="!emailField.valid && emailField.touched

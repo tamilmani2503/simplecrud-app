@@ -1,11 +1,11 @@
 <app-header></app-header>
 <div class="container">
     <form (ngSubmit) ="onSubmit()" #f="ngForm">
-        <div class="p-3 mb-2 bg-success text-white">{{memberUpdatedMessage}}</div>
+        <div class="alert alert-success" *ngIf=memberUpdatedMessage>{{memberUpdatedMessage}}</div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input class="form-control" id="firstName" name="first" type="text"
+                <input class="form-control" id="firstName" name="firstName" type="text"
                 required [(ngModel)] = "member.firstName"
                 pattern="[A-Za-z ]+" ngModel #firstNameField="ngModel">
                 <span class="help-block" *ngIf="!firstNameField.valid && 
@@ -34,7 +34,7 @@
                 <label for="country">Country</label><br>
                 <select class="form-control" id="country" name="country" required (change)=onChangeCountry($event.target.value) 
                 [(ngModel)] = "member.country">
-                    <option  [value]="">Select</option>
+                    
                     <option *ngFor="let country of countries" [value]=country.countryCode>{{country.countryDescription}}</option>
                 </select>
             </div>
@@ -75,12 +75,14 @@
             <div class="form-group">
                 <label for="termDate">Term Date</label>
                 <input class="form-control" id="termDate" name="termDate" type="date"
-                required ngModel #termDateField="ngModel" [(ngModel)] = "member.terminationDate">
+                required ngModel #termDateField="ngModel" [(ngModel)] = "member.terminationDate"
+                min="{{date | date:'yyyy-MM-dd'}}">
                 <span class="help-block" *ngIf="!termDateField.valid && 
                 termDateField.touched">Field cannot be Empty</span>
             </div>
             <div>
-                <button class="btn btn-primary" type="submit" [disabled]= "!f.valid ">Update Member</button>
+                <button class="btn btn-primary" type="submit" [disabled]= "!f.valid ">Update Member</button> &nbsp;
+                <button class="btn btn-info" [routerLink]="['/dashboard',userId]">Back Home</button>
             </div>
         </div>
         <div class="col-md-6">
@@ -96,7 +98,7 @@
             <div class="form-group">
                 <label for="dob">Date of Birth</label>
                 <input class="form-control" id="dob" name="dob" type="date"
-                required ngModel #dobField="ngModel" [(ngModel)] = "member.dob">
+                required ngModel #dobField="ngModel" [(ngModel)] = "member.dob" max="{{date | date:'yyyy-MM-dd'}}">
                 <span class="help-block" *ngIf="!dobField.valid && 
                 dobField.touched">Field cannot be Empty</span>
             </div>
@@ -143,7 +145,8 @@
             <div class="form-group">
                 <label for="effectiveDate">Effective Date</label>
                 <input class="form-control" id="effectiveDate" name="effectiveDate" type="date"
-                required ngModel #effectiveDateField="ngModel" [(ngModel)] = "member.effectiveDate">
+                required ngModel #effectiveDateField="ngModel" [(ngModel)] = "member.effectiveDate"
+                min="{{date | date:'yyyy-MM-dd'}}">
                 <span class="help-block" *ngIf="!effectiveDateField.valid && 
                 effectiveDateField.touched">Field cannot be Empty</span>
             </div>

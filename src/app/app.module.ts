@@ -11,11 +11,11 @@ import { RegistrationComponent } from './login/registration/registration.compone
 import { MemberComponent } from './member/member.component';
 import { AddMemberComponent } from './member/add-member/add-member.component';
 import { EditMemberComponent } from './member/edit-member/edit-member.component';
-import { RemoveMemberComponent } from './member/remove-member/remove-member.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginregService } from './service/loginreg.service';
 import { MemberService } from './service/member.service';
 import { LookupService } from './service/lookup.service';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -27,8 +27,8 @@ import { LookupService } from './service/lookup.service';
     MemberComponent,
     AddMemberComponent,
     EditMemberComponent,
-    RemoveMemberComponent,
     HeaderComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { LookupService } from './service/lookup.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoginregService, MemberService,LookupService],
+  providers: [LoginregService, MemberService,LookupService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

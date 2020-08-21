@@ -7,6 +7,7 @@ import { City } from '../../model/city.model';
 import { Member } from '../member.model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MemberService } from '../../service/member.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-member',
@@ -23,10 +24,12 @@ export class AddMemberComponent implements OnInit {
   genders : string[] = [
     'Male', 'Female', 'Other'
   ];
+  members: Member[];
   userId:string = "";
+  date:Date =new Date;
   memberAddedMessage:string="";
   constructor(private lookUpService:LookupService, private route:ActivatedRoute,
-    private memberService:MemberService) { }
+    private memberService:MemberService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.lookUpService.fetchAllCountries().subscribe(
@@ -63,12 +66,18 @@ export class AddMemberComponent implements OnInit {
   onSubmit() {
     this.member.memberId = Math.floor(100000000 + Math.random() * 900000000);
     this.member.userId = this.userId;
-    console.log(this.member);
+    
     this.memberService.addMember(this.member).subscribe(
       data => {
         if (data['memberId']) {
             this.memberAddedMessage= "Member was added successfully MemberId :" +data['memberId'];
         }
+        this.memberService.fetchByUserId(this.userId).subscribe(
+          data => {
+            this.members=data;
+            localStorage.setItem('memberList', JSON.stringify(this.members));
+          }
+      );
       }
     );
 

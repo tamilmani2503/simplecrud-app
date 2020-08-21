@@ -27,21 +27,31 @@ export class LoginComponent implements OnInit {
     this.loginRegService.doLogin(this.loginForm.value['userName'])
       .subscribe( 
             data => {
+                if (data.length >0) {
                 for (let key of data) {
                  if (data.hasOwnProperty(key))   
                     console.log(data);     
                    if (this.loginForm.value['password'] === key['password']) {
                            this.userId= key['userId'];
                             this.successUrl=this.successUrl+this.userId;
+                          localStorage.setItem('userId',this.userId);
                           this._router.navigate([this.successUrl]);
                        } else {
-                          console.log("exception occurred");
-                         this.badCredentials="Either UserName/Password is incorrect";
-                  }
+                        this.badCredentials="Either Username/Password Incorrect";
+                      }
                 }
+              } else {
+                this.badCredentials="Either Username/Password Incorrect";
+              }
+              },
+
+              error=>{
+                
+                  console.log("exception occurred");
+                 this.badCredentials="Either UserName/Password is incorrect";
+          
               }
         );
-     
   }
 
 }

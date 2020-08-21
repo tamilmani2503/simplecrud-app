@@ -16,6 +16,7 @@ import { NgForm } from '@angular/forms';
 export class EditMemberComponent implements OnInit {
 
   member: Member;
+  members : Member[];
   memberUpdatedMessage:string="";
   countries:Country[];
   states:State[];
@@ -23,16 +24,20 @@ export class EditMemberComponent implements OnInit {
   genders : string[] = [
     'Male', 'Female', 'Other'
   ];
+  userId:string="";
+  date : Date = new Date();
   @ViewChild('f') updateMemberForm : NgForm;
   constructor(private lookUpService:LookupService, private route:ActivatedRoute,
     private memberService:MemberService) { }
   
   ngOnInit(): void {
+    this.userId=localStorage.getItem('userId');
     this.route.params.subscribe (
       (params:Params) => { 
+        console.log(params['id']);
         this.memberService.fetchMemberById(params['id']).subscribe(
             data => {
-              this.member=data;
+              this.member=data[0];
             }
         );
       }
@@ -41,6 +46,8 @@ export class EditMemberComponent implements OnInit {
       data=>
       {
         this.countries=data;
+        this.onChangeCountry(this.member.country);
+        
       }
     );
 
@@ -50,6 +57,7 @@ export class EditMemberComponent implements OnInit {
     this.lookUpService.fetchStateByCountryCode(countryCode).subscribe(
       data => {
         this.states=data;
+        this.onChangeState(this.member.state);
       }
     );
 }
@@ -66,6 +74,12 @@ onChangeState(stateCode : string) {
 onSubmit() {
   this.memberService.updateMember(this.member).subscribe(
     data => {
+      this.memberService.fetchByUserId(this.userId).subscribe(
+        data => {
+          this.members=data;
+          localStorage.setItem('memberList', JSON.stringify(this.members));
+        }
+    );
       this.memberUpdatedMessage="Member data Updated";
     }
   );

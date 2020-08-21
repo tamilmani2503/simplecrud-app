@@ -1,14 +1,19 @@
-<nav class="navbar  navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a href=# class="navbar-brand">TrueCare</a>
-      </div>
-      <div class="collapse  navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href=#>Members </a></li>
-         
-        </ul>
-        
-      </div>
+<nav class="navbar  navbar-default" style="background-color: black;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a [routerLink]="['']" class="navbar-brand" style="color: white;">TrueCare</a>
     </div>
-  </nav>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a style="color:whitesmoke !important;"
+           [routerLink]="['/dashboard',userId]"
+          *ngIf="userId">Members </a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a style="color:whitesmoke !important; text-decoration: none;cursor: pointer;" 
+          (click)=onLogout()
+          *ngIf="userId">Logout </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

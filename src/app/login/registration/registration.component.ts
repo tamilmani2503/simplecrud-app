@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { LoginregService } from '../../service/loginreg.service';
 import { User } from '../../model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -16,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   user = new User
   registrationSuccess:string="";
 
-  constructor(private _loginRegService:LoginregService) { }
+  constructor(private _loginRegService:LoginregService, private route:Router) { }
 
   ngOnInit(): void {
     let today = new Date();
@@ -46,7 +47,8 @@ export class RegistrationComponent implements OnInit {
     this._loginRegService.registerUser(this.user).subscribe(
        status => {
           console.log(status);
-          this.registrationSuccess="Registered Successfully, please Login with your credentials";
+          //this.route.navigate(['']);
+          this.registrationSuccess ="Registered Successfully !!! ";
         },
         error => {
 

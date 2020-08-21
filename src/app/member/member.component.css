@@ -1,0 +1,22 @@
+.{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container {
+    margin-top: 50px; 
+    padding:2%;
+    border-radius: 25px;
+    width: 60%;
+}
+
+.help-block {
+    color: red;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 300;
+}
+
+.btn{
+    padding: 0px 12px;
+}
