@@ -26,7 +26,7 @@ export class EditMemberComponent implements OnInit {
   ];
   userId:string="";
   date : Date = new Date();
-  @ViewChild('f') updateMemberForm : NgForm;
+  //@ViewChild('f') updateMemberForm : NgForm;
   constructor(private lookUpService:LookupService, private route:ActivatedRoute,
     private memberService:MemberService) { }
   

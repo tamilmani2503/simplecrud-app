@@ -1,6 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ActivatedRoute} from '@angular/router';
+import { HttpClientTestingModule} from  '@angular/common/http/testing';
 
 import { MemberComponent } from './member.component';
+import { Subject } from 'rxjs';
+class ActivatedRouteStub {
+  private subject = new Subject();
+
+  push(value) {
+    this.subject.next(value);
+  }
+
+  get params() {
+    return this.subject.asObservable();
+  }
+}
+
 
 describe('MemberComponent', () => {
   let component: MemberComponent;
@@ -8,7 +23,12 @@ describe('MemberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberComponent ]
+      imports:[ HttpClientTestingModule],
+      declarations: [ MemberComponent ],
+      providers: [
+        
+        { provide: ActivatedRoute, useClass: ActivatedRouteStub }
+      ]
     })
     .compileComponents();
   }));

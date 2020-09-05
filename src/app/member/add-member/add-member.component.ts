@@ -7,7 +7,7 @@ import { City } from '../../model/city.model';
 import { Member } from '../member.model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MemberService } from '../../service/member.service';
-import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-member',
@@ -29,7 +29,7 @@ export class AddMemberComponent implements OnInit {
   date:Date =new Date;
   memberAddedMessage:string="";
   constructor(private lookUpService:LookupService, private route:ActivatedRoute,
-    private memberService:MemberService, private datePipe: DatePipe) { }
+    private memberService:MemberService) { }
 
   ngOnInit(): void {
     this.lookUpService.fetchAllCountries().subscribe(
