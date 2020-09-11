@@ -27,7 +27,4 @@ export class MemberService {
     return this._http.patch<any>('http://localhost:3000/members/'+member.id,member);
   }
 
-  public deleteMember (memberId:string) :Observable<any> {
-    return this._http.delete<any>('http://localhost:3000/members/'+memberId);
-  }
 }

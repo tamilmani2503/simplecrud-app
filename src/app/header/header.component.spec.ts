@@ -23,4 +23,13 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it ('should call OnLogOut method',() =>{
+    spyOn(component, 'onLogout');
+    expect(component.onLogout).toHaveBeenCalled;
+  });
 });
